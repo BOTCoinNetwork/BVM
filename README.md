@@ -1,7 +1,5 @@
-# EVM-LITE
+# BVM
 
-[![CircleCI](https://circleci.com/gh/mosaicnetworks/evm-lite.svg?style=svg)](https://circleci.com/gh/mosaicnetworks/evm-lite)
-[![Go Report](https://goreportcard.com/badge/github.com/mosaicnetworks/evm-lite)](https://goreportcard.com/report/github.com/mosaicnetworks/evm-lite)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## A lean Ethereum node with interchangeable consensus.
@@ -20,7 +18,7 @@ fingerprint.
 The EVM is meant to be used in conjunction with a system that broadcasts
 transactions across network participants and ensures that everyone executes the
 same transactions in the same order. Ethereum uses a Blockchain and a Proof of
-Work consensus algorithm. EVM-Lite makes it easy to use any consensus system,
+Work consensus algorithm. BVM makes it easy to use any consensus system,
 including [Babble](https://github.com/mosaicnetworks/babble) .
 
 ## ARCHITECTURE
@@ -30,7 +28,7 @@ including [Babble](https://github.com/mosaicnetworks/babble) .
 +----------+    |  +-------------+         +-------------+  |       
 |          |    |  | Service     |         | State       |  |
 |  Client  <-----> |             | <------ |             |  |
-|          |    |  | -API        |         | -EVM        |  |
+|          |    |  | -API        |         | -BVM        |  |
 +----------+    |  |             |         | -Trie       |  |
                 |  |             |         | -Database   |  |
                 |  +-------------+         +-------------+  |
@@ -51,7 +49,7 @@ including [Babble](https://github.com/mosaicnetworks/babble) .
 
 ## Usage
 
-EVM-Lite is a Go library, which is meant to be used in conjunction with a 
+BVM is a Go library, which is meant to be used in conjunction with a 
 consensus system like Babble, Tendermint, Raft, etc.
 
 This repo contains **Solo**, a bare-bones implementation of the consensus 
@@ -188,7 +186,7 @@ host:-$ curl http://[api_addr]/info | json_pp
 
 ## CLIENT
 
-Please refer to [EVM-Lite CLI](https://github.com/mosaicnetworks/evm-lite-cli)
+Please refer to [BVM CLI](https://github.com/BOTCoinNetwork/BVM-cli)
 for Javascript utilities and a CLI to interact with the API.
 
 ## DEV
@@ -198,8 +196,8 @@ DEPENDENCIES
 We use glide to manage dependencies:
 
 ```bash
-[...]/evm-lite$ curl https://glide.sh/get | sh
-[...]/evm-lite$ glide install
+[...]/BVM$ curl https://glide.sh/get | sh
+[...]/BVM$ glide install
 ```
 This will download all dependencies and put them in the **vendor** folder; it
 could take a few minutes.
