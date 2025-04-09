@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"github.com/mosaicnetworks/evm-lite/cmd/evml/commands/run"
+	"github.com/BOTCoinNetwork/BVM/cmd/evml/commands/run"
 	"github.com/spf13/cobra"
 )
 

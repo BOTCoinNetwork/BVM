@@ -16,7 +16,7 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/sirupsen/logrus"
 
-	bcommon "github.com/mosaicnetworks/evm-lite/src/common"
+	bcommon "github.com/BOTCoinNetwork/BVM/src/common"
 )
 
 var (

@@ -1,4 +1,4 @@
-package: github.com/mosaicnetworks/evm-lite
+package: github.com/BOTCoinNetwork/BVM
 import:
   - package: github.com/ethereum/go-ethereum
     version: =1.8.27

@@ -4,6 +4,7 @@ import (
 	"math/big"
 	"sync"
 
+	"github.com/BOTCoinNetwork/BVM/src/currency"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/core"
@@ -14,7 +15,6 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/params"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mosaicnetworks/evm-lite/src/currency"
 )
 
 var _receiptsPrefix = []byte("receipts-")

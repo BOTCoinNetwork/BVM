@@ -3,7 +3,7 @@ package state
 import (
 	ethCommon "github.com/ethereum/go-ethereum/common"
 
-	"github.com/mosaicnetworks/evm-lite/src/common"
+	"github.com/BOTCoinNetwork/BVM/src/common"
 )
 
 // ReceiptPromiseResponse captures a receipt and a potential error

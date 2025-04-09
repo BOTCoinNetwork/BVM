@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/BOTCoinNetwork/BVM/src/service"
+	"github.com/BOTCoinNetwork/BVM/src/state"
 	geth_common "github.com/ethereum/go-ethereum/common"
-	"github.com/mosaicnetworks/evm-lite/src/service"
-	"github.com/mosaicnetworks/evm-lite/src/state"
 	"github.com/sirupsen/logrus"
 )
 

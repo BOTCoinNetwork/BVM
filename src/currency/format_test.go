@@ -3,7 +3,7 @@ package currency_test
 import (
 	"testing"
 
-	"github.com/mosaicnetworks/evm-lite/src/currency"
+	"github.com/BOTCoinNetwork/BVM/src/currency"
 )
 
 type testRecord struct {

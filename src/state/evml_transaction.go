@@ -3,10 +3,10 @@ package state
 import (
 	"bytes"
 
+	"github.com/BOTCoinNetwork/BVM/src/common"
 	ethCommon "github.com/ethereum/go-ethereum/common"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/mosaicnetworks/evm-lite/src/common"
 )
 
 // EVMLTransaction is a wrapper around an EVM transaction which contains a

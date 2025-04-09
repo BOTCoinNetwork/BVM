@@ -3,12 +3,12 @@ package engine
 import (
 	"math/big"
 
+	"github.com/BOTCoinNetwork/BVM/src/config"
+	"github.com/BOTCoinNetwork/BVM/src/consensus"
+	"github.com/BOTCoinNetwork/BVM/src/currency"
+	"github.com/BOTCoinNetwork/BVM/src/service"
+	"github.com/BOTCoinNetwork/BVM/src/state"
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/mosaicnetworks/evm-lite/src/config"
-	"github.com/mosaicnetworks/evm-lite/src/consensus"
-	"github.com/mosaicnetworks/evm-lite/src/currency"
-	"github.com/mosaicnetworks/evm-lite/src/service"
-	"github.com/mosaicnetworks/evm-lite/src/state"
 )
 
 // Engine is the actor that coordinates State, Service and Consensus

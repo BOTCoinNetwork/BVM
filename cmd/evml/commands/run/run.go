@@ -1,8 +1,8 @@
 package run
 
 import (
-	_config "github.com/mosaicnetworks/evm-lite/src/config"
-	"github.com/mosaicnetworks/evm-lite/src/version"
+	_config "github.com/BOTCoinNetwork/BVM/src/config"
+	"github.com/BOTCoinNetwork/BVM/src/version"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
