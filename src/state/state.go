@@ -30,12 +30,12 @@ evm-lite. It is used by the Service for read-only operations, and by the
 Consensus system to apply new transactions. It manages 3 copies of the
 underlying datastore:
 
-1) it's own state, which is the "official" state, that cannot be arbitrarily
-   reverted.
-2) the write-ahead-state (was), where the consensus system applies transactions
-   before committing them to the main state.
-3) the transaction-pool's state, where the Service verifies transactions before
-   submitting them to the consensus system.
+ 1. it's own state, which is the "official" state, that cannot be arbitrarily
+    reverted.
+ 2. the write-ahead-state (was), where the consensus system applies transactions
+    before committing them to the main state.
+ 3. the transaction-pool's state, where the Service verifies transactions before
+    submitting them to the consensus system.
 */
 type State struct {
 	main   BaseState
