@@ -402,3 +402,7 @@ func (s *State) DumpAllAccounts() []byte {
 
 	return js
 }
+
+func (s *State) AddBalance(addr common.Address, amount *big.Int) {
+	s.main.stateDB.AddBalance(addr, amount)
+}
