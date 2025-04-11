@@ -404,5 +404,5 @@ func (s *State) DumpAllAccounts() []byte {
 }
 
 func (s *State) AddBalance(addr common.Address, amount *big.Int) {
-	s.main.stateDB.AddBalance(addr, amount)
+	s.was.stateDB.AddBalance(addr, amount)
 }
