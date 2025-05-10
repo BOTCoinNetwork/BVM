@@ -9,19 +9,20 @@ import (
 	"strings"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/rawdb"
 	ethTypes "github.com/ethereum/go-ethereum/core/types"
 
 	ethState "github.com/ethereum/go-ethereum/core/state"
 	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/sirupsen/logrus"
 
 	bcommon "github.com/BOTCoinNetwork/BVM/src/common"
 )
 
 var (
-	_fdLimit  = 8192
-	_gasLimit = uint64(1000000000000000000)
+	_fdLimit     = 8192
+	_gasLimit    = uint64(1000000000000000000)
+	_dbNamespace = "bvm_"
 )
 
 /*
@@ -50,9 +51,8 @@ type State struct {
 // NewState creates and initializes a new State object. It reads the genesis
 // file to create the initial accounts, including the POA smart-contract.
 func NewState(dbFile string, dbCache int, genesisFile string, logger *logrus.Entry) (*State, error) {
-
-	// db is THREAD SAFE and reused by base, was, and txpool
-	db, err := ethdb.NewLDBDatabase(dbFile, dbCache, _fdLimit)
+	// Create the database
+	db, err := rawdb.NewLevelDBDatabase(dbFile, dbCache, _fdLimit, _dbNamespace)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func NewState(dbFile string, dbCache int, genesisFile string, logger *logrus.Ent
 	)
 
 	s := &State{
-		main:        main,
+		main:        main.Copy(),
 		was:         NewWriteAheadState(main.Copy(), logger),
 		txPool:      NewTxPool(main.Copy(), logger),
 		genesisFile: genesisFile,
@@ -376,7 +376,15 @@ type CurrentGenesis struct {
 // DumpAllAccounts outputs JSON of all accounts
 func (s *State) DumpAllAccounts() []byte {
 
-	dump := CurrentGenesis{Alloc: s.main.stateDB.RawDump().Accounts,
+	rawAccounts := s.main.stateDB.RawDump(false, false, false).Accounts
+	alloc := make(map[string]ethState.DumpAccount, len(rawAccounts))
+
+	for addr, account := range rawAccounts {
+		alloc[addr.Hex()] = account
+	}
+
+	dump := CurrentGenesis{
+		Alloc: alloc,
 		Poa: bcommon.PoaMap{
 			Address: POAADDR.Hex(),
 			Balance: s.GetBalance(POAADDR, false).Text(10),
@@ -390,7 +398,12 @@ func (s *State) DumpAllAccounts() []byte {
 	cleanPOAAddr := strings.TrimPrefix(strings.ToLower(POAADDR.Hex()), "0x")
 
 	// Set POA Storage from Alloc section before we remove it
-	dump.Poa.Storage = dump.Alloc[cleanPOAAddr].Storage
+	rawStorage := dump.Alloc[cleanPOAAddr].Storage
+	storage := make(map[string]string, len(rawStorage))
+	for hash, value := range rawStorage {
+		storage[hash.Hex()] = value
+	}
+	dump.Poa.Storage = storage
 
 	// Remove POA contract from Alloc section
 	delete(dump.Alloc, cleanPOAAddr)
